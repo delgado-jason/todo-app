@@ -1,3 +1,4 @@
+import './assets/styles.css';
 import Todo from "./components/Todo";
 import Project from "./components/Project";
 

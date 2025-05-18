@@ -11,7 +11,52 @@
 </head>
 
 <body>
-    <h1>Todo App</h1>
+    <header>
+        <h2 id="logo">Todo App</h2>
+        <nav></nav>
+    </header>
+
+    <div class="container">
+
+        <h4 id="projectName">Everyday</h4>
+
+        <form action="" id="todoForm">
+
+            <!-- Field to enter new todo -->
+            <input type="text" id="todoInputField">
+
+            <!-- Where all the tasks are displayed -->
+            <fieldset id="todosFieldset">
+                <label for="task1">
+                    <input type="checkbox" id="cb1" name="cb1" value="complete">
+                    <span></span>
+                    Clean house
+                </label><br>
+                
+                <label for="task2">
+                    <input type="checkbox" id="cb2" name="cb2" value="complete">
+                    <span></span>
+                    Take out the trash
+                </label><br>
+                
+                <label for="task3">
+                    <input type="checkbox" id="cb3" name="cb3" value="complete" checked>
+                    <span></span>
+                    Clean Garage
+                </label><br>
+                
+                <label for="task4">
+                    <input type="checkbox" id="cb4" name="cb4" value="complete" checked>
+                    <span></span>
+                    Walk the dog
+                </label>
+            </fieldset>
+            
+        </form> <!-- end of todo form -->
+
+        <button id="newProjectButton">+</button>
+
+    </div>
 
     <script src="index.js" async defer></script>
 </body>

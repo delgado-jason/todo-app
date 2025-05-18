@@ -1,0 +1,105 @@
+*, ::before, ::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 18px;
+    --background-primary: #17161A;
+    --background-secondary: #222027;
+    --font-color: #EEEBF6;
+    --main-color: #21CA97;
+    --secondary-color: #B921CA;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: .77rem;
+}
+
+body {
+    background-color: var(--background-primary);
+    color: var(--font-color);
+    padding: 20px;
+}
+
+#logo {
+    text-align: center;
+}
+
+.container {
+    min-width: 280px;
+    margin: 40px auto 0;
+}
+
+#projectName {
+    text-align: right;
+    padding-bottom: 10px;
+    text-decoration: underline;
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 5px;
+    text-decoration-thickness: 2px;
+}
+
+form {
+    min-width: 280px;
+    padding: 30px 40px;
+    background-color: var(--background-secondary);
+    border-radius: 5px;
+}
+
+#todoInputField {
+    width: 100%;
+    height: 31px;
+    border-radius: 5px;
+}
+
+#todosFieldset {
+    border: none;
+    padding-top: 30px;
+}
+
+label input {
+    visibility: hidden;
+    /* <-- Hide the default checkbox. The rest is to hide and allow tabbing, which display:none prevents */
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+label span {
+    /* <-- Style the artificial checkbox */
+    height: 14px;
+    width: 14px;
+    border: 1px solid var(--font-color);
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    margin-right: 200px;
+}
+
+[type=checkbox]:checked+span:before {
+    content: '\2714';
+    position: absolute;
+    top: -5px;
+    left: 0;
+    color: var(--main-color);
+}
+
+button {
+    width: 45px;
+    height: 45px;
+    background-color: var(--main-color);
+    color: var(--font-color);
+    border-radius: 50%;
+    border: none;
+    font-size: 27px;
+    float: right;
+    margin-top: 40px;
+}
