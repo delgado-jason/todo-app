@@ -33,11 +33,18 @@ body {
 
 .container {
     min-width: 280px;
+    max-width: 980px;
     margin: 40px auto 0;
 }
 
 #message {
     padding-bottom: 40px;
+    text-align: center;
+}
+
+#projectContainer {
+    width: 460px;
+    margin: 0 auto;
 }
 
 #projectName {
@@ -50,10 +57,11 @@ body {
 }
 
 form {
-    min-width: 280px;
+    width: 460px;
     padding: 30px 40px;
     background-color: var(--background-secondary);
     border-radius: 5px;
+    margin: 0 auto;
 }
 
 #todoInputField {
