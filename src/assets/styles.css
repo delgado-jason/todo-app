@@ -36,6 +36,10 @@ body {
     margin: 40px auto 0;
 }
 
+#message {
+    padding-bottom: 40px;
+}
+
 #projectName {
     text-align: right;
     padding-bottom: 10px;
