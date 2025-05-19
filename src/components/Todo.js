@@ -1,12 +1,9 @@
 
 
 export default class Todo {
-    constructor(title, desc, dueDate, priority) {
+    constructor(title) {
         this.title = title;
-        this.desc = desc;
-        this.dueDate = new Date(dueDate);
         this.dateCreated = new Date();
-        this.priority = priority;
     }
     
     // Return the date the todo was created
@@ -14,14 +11,16 @@ export default class Todo {
         return this.dateCreated;
     }
 
+    // Return title
+    getTitle() {
+        return this.title;
+    }
+
     // Return the string of the object
     toString() {
         return `
             Title: ${this.title}
-            Description: ${this.desc}
-            Due Date: ${this.dueDate}
             Date Created: ${this.dateCreated}
-            Priority: ${this.priority}
         `;
     }
     

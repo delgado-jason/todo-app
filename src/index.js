@@ -1,20 +1,43 @@
 import './assets/styles.css';
 import Todo from "./components/Todo";
 import Project from "./components/Project";
+import EventController from './components/EventController';
+import ViewController from './components/ViewController';
 
 const app = (function() {
     
+    // Store the todos
+    let todos = [];
+
+    const display = ViewController();
+    const controller = EventController();
+    const todoForm = document.getElementById('todoForm');
+    const todoInput = document.getElementById('todoInputField');
+
+
     // Create default project
     const defaultProject = new Project();
 
-    // Create default Todo
-    const defaultTodo = new Todo('Create more todos', 'Add more todos to this project', '5-31-2025', 'High');
+    // Add event listener for todo form
+    todoForm.addEventListener('submit', (e) => {
+        
+            e.preventDefault();
 
-    // Add default Todo to default Project
-    defaultProject.setTodo(defaultTodo);
+            // Create a new Todo
+            const newTask = new Todo(todoInput.value);
 
-    // Log the Todo
-    console.log(defaultProject.getTodos.toString())
+
+            // Add the new task to the list of todos
+            controller.addTodo(newTask, todos);
+
+            // Call the ViewController method
+            display.showTodo(newTask.getTitle());
+
+            // Clear value from input field
+            // todoInput.value = '';
+        
+
+    })
 
 })();
 
