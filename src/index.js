@@ -5,6 +5,9 @@ import EventController from './components/EventController';
 import ViewController from './components/ViewController';
 
 const app = (function() {
+
+    // Store the projects
+    let projects = []
     
     // Store the todos
     let todos = [];
@@ -13,15 +16,20 @@ const app = (function() {
     const controller = EventController();
     const todoForm = document.getElementById('todoForm');
     const todoInput = document.getElementById('todoInputField');
+    const projectBtn = document.getElementById('newProjectButton');
 
 
     // Create default project
     const defaultProject = new Project();
+    
+    // Populate the projects array with default project
+    projects.push(defaultProject);
 
     // Add event listener for todo form
     todoForm.addEventListener('submit', (e) => {
         
             e.preventDefault();
+            console.log(e.target);
 
             // Create a new Todo
             const newTask = new Todo(todoInput.value);
@@ -39,5 +47,11 @@ const app = (function() {
 
     })
 
+    // Add event listener for new project button
+    projectBtn.addEventListener('click', e => {
+        e.preventDefault();
+        display.newProjectPage();
+    });
+    display.newProjectPage();
 })();
 

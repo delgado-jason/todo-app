@@ -1,7 +1,7 @@
 
 
 export default class Project {
-    constructor(name="Personal") {
+    constructor(name="Everyday") {
         this.name = name;
         this.todos = []; // empty array store project specific Todos
     }

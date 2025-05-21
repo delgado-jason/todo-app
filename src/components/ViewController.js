@@ -1,6 +1,8 @@
 
 
 export default function ViewController() {
+    
+    const mainContentDiv = document.getElementById('mainContent');
 
     const fieldset = document.getElementById('todosFieldset');
 
@@ -23,6 +25,20 @@ export default function ViewController() {
         
     }
 
-    return { showTodo };
+    const newProjectPage = () => {
+
+        mainContentDiv.innerHTML = `
+            <form id="projectForm">
+                <h1 class="form-h1">
+                    Project Name
+                </h1>
+                <input type="text" id="projectInput" class="project-input" autofocus />
+                <button id="projectSubBtn" class="project-sub-btn">SUBMIT</button>
+            </form>
+        `;
+
+    }
+
+    return { showTodo, newProjectPage };
 
 }
