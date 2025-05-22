@@ -17,6 +17,7 @@ const app = (function() {
     const todoForm = document.getElementById('todoForm');
     const todoInput = document.getElementById('todoInputField');
     const projectBtn = document.getElementById('newProjectButton');
+    
 
 
     // Create default project
@@ -51,7 +52,23 @@ const app = (function() {
     projectBtn.addEventListener('click', e => {
         e.preventDefault();
         display.newProjectPage();
+
+        const projectSubBtn = document.getElementById('projectSubBtn');
+
+        // Event listener for project submission button
+        projectSubBtn.addEventListener('click', e => {
+            e.preventDefault();
+
+            const projectName = document.getElementById('projectInput').value;
+
+            const newProject = new Project(projectName);
+
+            controller.addProject(newProject, projects);
+        });
     });
-    display.newProjectPage();
+
+    
+
+
 })();
 

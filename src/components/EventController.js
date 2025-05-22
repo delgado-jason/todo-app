@@ -8,6 +8,10 @@ export default function EventController() {
         arr.push(task);
     }
 
-    return { addTodo }
+    const addProject = (proj, arr) => {
+        arr.push(proj);
+    }
+
+    return { addTodo, addProject }
 
 }
