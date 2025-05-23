@@ -14,7 +14,7 @@ const app = (function() {
 
     const display = ViewController();
     const controller = EventController();
-    const todoForm = document.getElementById('todoForm');
+    const todoForm = document.getElementById('todoForm1');
     const todoInput = document.getElementById('todoInputField');
     const projectBtn = document.getElementById('newProjectButton');
     
@@ -22,6 +22,12 @@ const app = (function() {
 
     // Create default project
     const defaultProject = new Project();
+
+    // Create default task
+    const defaultTask = new Todo('Clean house');
+
+    // Add default task to default project
+    defaultProject.setTodo(defaultTask);
     
     // Populate the projects array with default project
     projects.push(defaultProject);
@@ -64,6 +70,14 @@ const app = (function() {
             const newProject = new Project(projectName);
 
             controller.addProject(newProject, projects);
+
+            display.showIndexPage();
+            
+            // Loop through projects
+            for (let p in projects) {
+                display.showProjects(projects[p].getName(), p + 1);
+            }
+            console.log(projects);
         });
     });
 

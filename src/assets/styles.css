@@ -64,6 +64,10 @@ form {
     margin: 0 auto;
 }
 
+.todo-form {
+    margin: 40px 0;
+}
+
 #todoInputField {
     width: 100%;
     height: 31px;

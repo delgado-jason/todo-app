@@ -18,15 +18,15 @@
 
     <div id="mainContent" class="container">
         <p id="message">Enter a task for the current project or click the green button to start a new project</p>
-
-        <div class="projectContainer">
-            <form action="" id="todoForm">
-            
+        
+        <div class="projectContainer" id="projectContainer">
+            <form action="" id="todoForm1" class="todo-form">
+        
                 <h4 id="projectName">Everyday</h4>
-            
+        
                 <!-- Field to enter new todo -->
                 <input type="text" id="todoInputField">
-            
+        
                 <!-- Where all the tasks are displayed -->
                 <fieldset id="todosFieldset">
                     <label for="task1">
@@ -34,33 +34,29 @@
                         <span></span>
                         Clean house
                     </label><br>
-            
+        
                     <label for="task2">
                         <input type="checkbox" id="cb2" name="cb2" value="complete">
                         <span></span>
                         Take out the trash
                     </label><br>
-            
+        
                     <label for="task3">
                         <input type="checkbox" id="cb3" name="cb3" value="complete" checked>
                         <span></span>
                         Clean Garage
                     </label><br>
-            
+        
                     <label for="task4">
                         <input type="checkbox" id="cb4" name="cb4" value="complete" checked>
                         <span></span>
                         Walk the dog
                     </label><br>
                 </fieldset>
-            
+        
             </form> <!-- end of todo form -->
-            
             <button id="newProjectButton">+</button>
         </div>
-        
-        
-
     </div>
 
     <script src="index.js" async defer></script>
