@@ -32,3 +32,13 @@ git clone https://github.com/<your-username>/<repo-name>.git
 cd <repo-name>
 npm install
 ```
+
+## Release Process
+
+Before tagging a release:
+
+- Features complete
+- No console errors
+- `npm run build` passes
+- CHANGELOG updated
+- Tag created on `main`
