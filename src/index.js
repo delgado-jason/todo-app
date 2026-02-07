@@ -29,16 +29,4 @@ seedData.map((task) => {
   todos.push(newTodo);
 });
 
-// ---- User Input ----
-let title = prompt("What is the title for your task? ");
-let desc = prompt("Describe the task (optional): ");
-
-// ---- Validation ----
-
-// Title must not be blank
-if (title === "") {
-  console.error("ERROR: Title must not be blank");
-  title = prompt("What is the title for your task? ");
-}
-
 renderTodoList(todos);
