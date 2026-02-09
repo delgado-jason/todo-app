@@ -1,7 +1,12 @@
 import "./styles.css";
 
 import { Todo, createTodo } from "./modules/todos.js";
-import { container, renderTodoList } from "./modules/dom.js";
+import {
+  container,
+  renderTodoList,
+  bindAddTodoBtn,
+  renderModal,
+} from "./modules/dom.js";
 
 // ---- Seed Data ----
 
@@ -30,3 +35,8 @@ seedData.map((task) => {
 });
 
 renderTodoList(todos);
+bindAddTodoBtn(handleAddTodoClick);
+
+function handleAddTodoClick() {
+  renderModal();
+}
