@@ -40,25 +40,6 @@ function createTodoElement(todo) {
   return li;
 }
 
-function renderForm() {
-  const formContainer = document.createElement("div");
-
-  // Set the id for the form container
-  formContainer.setAttribute("id", "formContainer");
-
-  formContainer.innerHTML = `
-        <h3>Add a Todo</h3>
-        <form>
-            <label for='title' name='title'>Title:</label>
-            <input type='text' name='titleInput' id='titleInput' />
-            <label for='desc' name='desc'>Description:</label>
-            <input type='text' name='descInput' id='descInput' />
-            <button>Add Todo</button>
-        </form>
-    `;
-  return formContainer;
-}
-
 export function bindAddTodoBtn(onClick) {
   const button = document.querySelector("#add-todo-btn");
 
@@ -67,31 +48,50 @@ export function bindAddTodoBtn(onClick) {
   });
 }
 
+export function bindTodoForm(onSubmit) {
+  const form = document.querySelector("#todoForm");
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const titleInput = document.querySelector("#titleInput");
+    const descInput = document.querySelector("#descInput");
+
+    const data = {
+      title: titleInput.value,
+      desc: descInput.value,
+    };
+
+    onSubmit(data);
+    closeDialog();
+  });
+}
+
 export function renderModal() {
   const dialog = document.createElement("dialog");
   dialog.setAttribute("id", "modal");
   dialog.innerHTML = `
     <h3>Add a Todo</h3>
-        <form>
+        <form id="todoForm" method="dialog">
             <label for='title' name='title'>Title:</label>
             <input type='text' name='titleInput' id='titleInput' />
             <label for='desc' name='desc'>Description:</label>
             <input type='text' name='descInput' id='descInput' />
-            <button id="closeDialogBtn">Close</button>
-            <button>Add Todo</button>
+            <button id="closeDialogBtn" type="button">Close</button>
+            <button type="submit" id="submitBtn">Submit</button>
         </form>
   `;
 
   container.appendChild(dialog);
   dialog.showModal();
+
+  const closeBtn = dialog.querySelector("#closeDialogBtn");
+  closeBtn.addEventListener("click", () => {
+    dialog.close();
+    dialog.remove();
+  });
 }
 
-function bindDialogCloseBtn() {
-  const button = document.querySelector("#closeDialogBtn");
-
-  // Add event listener
-  button.addEventListener("click", () => {
-    const dialog = document.querySelector("#modal");
-    dialog.close();
-  });
+function closeDialog() {
+  const dialog = document.querySelector("#modal");
+  dialog.close();
 }

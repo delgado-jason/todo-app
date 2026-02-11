@@ -6,6 +6,7 @@ import {
   renderTodoList,
   bindAddTodoBtn,
   renderModal,
+  bindTodoForm,
 } from "./modules/dom.js";
 
 // ---- Seed Data ----
@@ -39,4 +40,13 @@ bindAddTodoBtn(handleAddTodoClick);
 
 function handleAddTodoClick() {
   renderModal();
+
+  bindTodoForm((data) => {
+    if (data.title === "") {
+      return alert("Title cannot be empty");
+    }
+
+    todos.push(new Todo(data.title, data.desc));
+    renderTodoList(todos);
+  });
 }
