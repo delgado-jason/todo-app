@@ -69,6 +69,7 @@ export function bindAddTodoBtn(onClick) {
 
 export function renderModal() {
   const dialog = document.createElement("dialog");
+  dialog.setAttribute("id", "modal");
   dialog.innerHTML = `
     <h3>Add a Todo</h3>
         <form>
@@ -76,10 +77,21 @@ export function renderModal() {
             <input type='text' name='titleInput' id='titleInput' />
             <label for='desc' name='desc'>Description:</label>
             <input type='text' name='descInput' id='descInput' />
+            <button id="closeDialogBtn">Close</button>
             <button>Add Todo</button>
         </form>
   `;
 
   container.appendChild(dialog);
   dialog.showModal();
+}
+
+function bindDialogCloseBtn() {
+  const button = document.querySelector("#closeDialogBtn");
+
+  // Add event listener
+  button.addEventListener("click", () => {
+    const dialog = document.querySelector("#modal");
+    dialog.close();
+  });
 }
