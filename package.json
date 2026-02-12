@@ -34,6 +34,7 @@
     "webpack-dev-server": "^5.2.3"
   },
   "dependencies": {
-    "@inquirer/prompts": "^8.2.0"
+    "@inquirer/prompts": "^8.2.0",
+    "uuid": "^13.0.0"
   }
 }

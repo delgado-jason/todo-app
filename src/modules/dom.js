@@ -33,9 +33,12 @@ export function renderTodoList(todos) {
 
 function createTodoElement(todo) {
   const li = document.createElement("li");
+  li.setAttribute("data-id", todo.id);
   li.innerHTML = `
-        <h3>${todo.title}</h3>
+        <h3 class="todo-title ${todo.isComplete ? "toggle" : ""}">${todo.title}</h3>
         <p>${todo.desc}</p>
+        <label for="toggle-todo">Complete Task</label>
+        <input type="checkbox" class="todo-toggle" ${todo.isComplete ? "checked" : ""} />
     `;
   return li;
 }
@@ -94,4 +97,16 @@ export function renderModal() {
 function closeDialog() {
   const dialog = document.querySelector("#modal");
   dialog.close();
+}
+
+export function bindToggleTodo(onToggle) {
+  const list = listItems;
+  list.addEventListener("click", (e) => {
+    const checkbox = e.target.closest(".todo-toggle");
+    if (!checkbox) return;
+
+    const li = e.target.closest("li");
+    const id = li.dataset.id;
+    onToggle(id);
+  });
 }

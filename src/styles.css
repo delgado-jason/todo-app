@@ -1,3 +1,7 @@
 body {
   background-color: beige;
 }
+
+.toggle {
+  text-decoration: line-through;
+}
