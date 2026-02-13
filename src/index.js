@@ -38,7 +38,10 @@ seedData.map((task) => {
 
 DOM.renderTodoList(todos);
 DOM.bindAddTodoBtn(handleAddTodoClick);
-DOM.bindToggleTodo((id) => onToggle(id));
+DOM.bindTodoListEvents({
+  onDelete: (id) => onDelete(id),
+  onToggle: (id) => onToggle(id),
+});
 
 function handleAddTodoClick() {
   DOM.renderModal();
@@ -59,5 +62,11 @@ function onToggle(id) {
 
   todo.isComplete = !todo.isComplete;
 
+  DOM.renderTodoList(todos);
+}
+
+function onDelete(id) {
+  const todoItem = todos.find((todo) => todo.id === id);
+  todos.splice(todos.indexOf(todoItem));
   DOM.renderTodoList(todos);
 }

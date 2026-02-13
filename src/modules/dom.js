@@ -39,6 +39,7 @@ function createTodoElement(todo) {
         <p>${todo.desc}</p>
         <label for="toggle-todo">Complete Task</label>
         <input type="checkbox" class="todo-toggle" ${todo.isComplete ? "checked" : ""} />
+        <button class="delete-todo" type="button">Delete</button>
     `;
   return li;
 }
@@ -96,17 +97,28 @@ export function renderModal() {
 
 function closeDialog() {
   const dialog = document.querySelector("#modal");
+  if (!dialog) return;
   dialog.close();
+  dialog.remove();
 }
 
-export function bindToggleTodo(onToggle) {
-  const list = listItems;
-  list.addEventListener("click", (e) => {
+export function bindTodoListEvents({ onToggle, onDelete }) {
+  listItems.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".delete-todo");
+    if (!deleteBtn) return;
+
+    const li = deleteBtn.closest("li");
+    if (!li) return;
+
+    onDelete(li.dataset.id);
+  });
+
+  listItems.addEventListener("change", (e) => {
     const checkbox = e.target.closest(".todo-toggle");
     if (!checkbox) return;
 
-    const li = e.target.closest("li");
-    const id = li.dataset.id;
-    onToggle(id);
+    const li = checkbox.closest("li");
+    if (!li) return;
+    onToggle(li.dataset.id);
   });
 }
