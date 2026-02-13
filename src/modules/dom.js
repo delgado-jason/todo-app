@@ -37,9 +37,12 @@ function createTodoElement(todo) {
   li.innerHTML = `
         <h3 class="todo-title ${todo.isComplete ? "toggle" : ""}">${todo.title}</h3>
         <p>${todo.desc}</p>
-        <label for="toggle-todo">Complete Task</label>
+        <label for="toggle-todo">
+        Complete Task
         <input type="checkbox" class="todo-toggle" ${todo.isComplete ? "checked" : ""} />
+        </label>
         <button class="delete-todo" type="button">Delete</button>
+        <button class="edit-todo" type="button">Edit</button>
     `;
   return li;
 }
@@ -70,16 +73,18 @@ export function bindTodoForm(onSubmit) {
   });
 }
 
-export function renderModal() {
+export function renderModal(title, desc) {
   const dialog = document.createElement("dialog");
   dialog.setAttribute("id", "modal");
   dialog.innerHTML = `
     <h3>Add a Todo</h3>
         <form id="todoForm" method="dialog">
             <label for='title' name='title'>Title:</label>
-            <input type='text' name='titleInput' id='titleInput' />
+            <input type='text' name='titleInput' id='titleInput' value="${title ? title : ""}" />
             <label for='desc' name='desc'>Description:</label>
-            <input type='text' name='descInput' id='descInput' />
+            <textarea name='descInput' id='descInput'>
+            ${desc ? desc : ""}
+            </textarea>
             <button id="closeDialogBtn" type="button">Close</button>
             <button type="submit" id="submitBtn">Submit</button>
         </form>
@@ -102,15 +107,23 @@ function closeDialog() {
   dialog.remove();
 }
 
-export function bindTodoListEvents({ onToggle, onDelete }) {
+export function bindTodoListEvents({ onToggle, onDelete, onEdit }) {
   listItems.addEventListener("click", (e) => {
     const deleteBtn = e.target.closest(".delete-todo");
-    if (!deleteBtn) return;
+    if (deleteBtn) {
+      const li = deleteBtn.closest("li");
+      if (!li) return;
 
-    const li = deleteBtn.closest("li");
-    if (!li) return;
+      onDelete(li.dataset.id);
+      return;
+    }
 
-    onDelete(li.dataset.id);
+    const editBtn = e.target.closest(".edit-todo");
+    if (editBtn) {
+      const li = editBtn.closest("li");
+      onEdit(li.dataset.id);
+      return;
+    }
   });
 
   listItems.addEventListener("change", (e) => {

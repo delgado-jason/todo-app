@@ -1,11 +1,11 @@
 import { v4 as uuid } from "uuid";
 
 export class Todo {
-  constructor(tite, desc = null) {
+  constructor(tite, desc = null, isComplete = false, id = uuid()) {
+    this.id = id;
     this.title = tite;
     this.desc = desc;
-    this.id = uuid();
-    this.isComplete = false;
+    this.isComplete = isComplete;
   }
 
   getTitle = () => {

@@ -32,7 +32,7 @@ const todos = [];
 
 // Map the todo objects into the todos array
 seedData.map((task) => {
-  const newTodo = new Todo(task.title, task.desc);
+  const newTodo = new Todo(task.title, task.desc, task.isComplete, task.id);
   todos.push(newTodo);
 });
 
@@ -41,6 +41,7 @@ DOM.bindAddTodoBtn(handleAddTodoClick);
 DOM.bindTodoListEvents({
   onDelete: (id) => onDelete(id),
   onToggle: (id) => onToggle(id),
+  onEdit: (id) => onEdit(id),
 });
 
 function handleAddTodoClick() {
@@ -66,7 +67,24 @@ function onToggle(id) {
 }
 
 function onDelete(id) {
-  const todoItem = todos.find((todo) => todo.id === id);
-  todos.splice(todos.indexOf(todoItem));
+  const index = todos.findIndex((todo) => todo.id === id);
+  if (index === -1) return;
+
+  todos.splice(index, 1);
+
   DOM.renderTodoList(todos);
+}
+
+function onEdit(id) {
+  const todo = todos.find((todo) => todo.id === id);
+  const todoIndex = todos.indexOf(todo);
+  DOM.renderModal(todo.title, todo.desc);
+
+  DOM.bindTodoForm((data) => {
+    todos[todoIndex].title = data.title;
+    todos[todoIndex].desc = data.desc;
+
+    console.log(todos[0].title);
+    DOM.renderTodoList(todos);
+  });
 }
